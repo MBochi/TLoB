@@ -41,12 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Layer 1
-    uniqueID: 2425651459
-    locked: 0
-  - name: Layer 2
+  - name: Tiles
     uniqueID: 4250941897
     locked: 0
-  - name: Layer 3
+  - name: Ground
+    uniqueID: 2425651459
+    locked: 0
+  - name: Entity
     uniqueID: 4189426099
+    locked: 0
+  - name: Player
+    uniqueID: 98032013
+    locked: 0
+  - name: Enemy
+    uniqueID: 1569436553
     locked: 0
