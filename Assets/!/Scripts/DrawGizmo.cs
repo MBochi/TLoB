@@ -5,7 +5,8 @@ using UnityEngine;
 public class DrawGizmo : MonoBehaviour
 {
     public float attackRadius = 10f;
-    public Transform tf;
+    public Transform attackPoint;
+    public bool showGizmo = false;
   
     
     void Start()
@@ -23,6 +24,10 @@ public class DrawGizmo : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(tf.position, attackRadius / 10);
+        if (showGizmo)
+        {
+            Gizmos.DrawWireSphere(attackPoint.position, attackRadius / 10);
+        }
+        
     }
 }
