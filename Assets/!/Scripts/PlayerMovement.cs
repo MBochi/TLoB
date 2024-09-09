@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public bool facingRight = true;
     public Transform tf;
     public Camera cam;
+    [Header("Mouse or XBox Controller")]
+    public Boolean switchAimControls = false;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -31,8 +33,7 @@ public class PlayerMovement : MonoBehaviour
     {
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        //stickPos = new Vector2(Mathf.Round(Input.GetAxisRaw("RightJoyStickHorizontal")), Mathf.Round(Input.GetAxisRaw("RightJoyStickVertical")));
-        Debug.Log(stickPos);
+        stickPos = new Vector2(Input.GetAxisRaw("RightJoyStickHorizontal"), Input.GetAxisRaw("RightJoyStickVertical"));
     }
 
     //Actions
@@ -50,11 +51,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void Aim()
     {
-        Vector2 lookDir = mousePos - rb.position;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-        //float stickAngle = Mathf.Atan2(stickPos.y, stickPos.x) * Mathf.Rad2Deg;
-        tf.rotation = Quaternion.Euler(0, 0, angle);
-        //tf.rotation = Quaternion.Euler(0, 0, stickAngle * -1);
+        if (switchAimControls == false)
+        {
+            // Mouse aiming
+            Vector2 lookDir = mousePos - rb.position;
+            float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+            tf.rotation = Quaternion.Euler(0, 0, angle);
+        }
+        else if (switchAimControls == true) 
+        {
+            // Controller aiming
+            Vector2 idleStickPos = new(Mathf.Round(stickPos.x), Mathf.Round(stickPos.y));
+            float stickAngle = Mathf.Atan2(stickPos.y, stickPos.x) * Mathf.Rad2Deg;
+            if (idleStickPos != Vector2.zero)
+            {
+                tf.rotation = Quaternion.Euler(0, 0, stickAngle * -1);
+            }
+        }
     }
 
     private void TurnCheck(float move)
