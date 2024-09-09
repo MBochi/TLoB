@@ -4915,7 +4915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ArrowPrefab: {fileID: 1349237188696707155, guid: 806aebeff97e79c46ba1d871aaedfc41,
     type: 3}
-  SlashPrefab: {fileID: 6115032545144693178, guid: e76f5dadde99e1d429fc74413359716d,
+  SlashPrefab: {fileID: 3294105879809992481, guid: 390b939fe240b18459fe4c3cfcb639a3,
     type: 3}
   attackRadius: 5
   attackPoint: {fileID: 1437027927}
