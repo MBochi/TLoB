@@ -32,7 +32,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void Aim()
     {
-        if (switchAimControls == false)
+        if (switchAimControls == false) // Keyboard
         {
             // Mouse aiming
             Vector2 lookDir = mousePos - rb.position;
@@ -41,8 +41,16 @@ public class PlayerCombat : MonoBehaviour
             showGizmo = true;
 
         }
-        else if (switchAimControls == true) 
+        else if (switchAimControls == true) //Controller
         {
+            if (Input.GetKeyDown(KeyCode.JoystickButton3) && !chargedAttackTimerActive)
+            {
+                attackMode += 1;
+                if (attackMode > 1)
+                {
+                    attackMode = 0;
+                }
+            }
             // Controller aiming
             Vector2 idleStickPos = new(Mathf.Round(stickPos.x), Mathf.Round(stickPos.y));
             float stickAngle = Mathf.Atan2(stickPos.y, stickPos.x) * Mathf.Rad2Deg;

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3442896973164486566}
   - component: {fileID: 1368077436443945002}
   - component: {fileID: 8732217567357413588}
+  - component: {fileID: -4266591207378045026}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -112,3 +113,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-4266591207378045026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349237188696707155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 832be0baf1689a045b5547c6eda301f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
