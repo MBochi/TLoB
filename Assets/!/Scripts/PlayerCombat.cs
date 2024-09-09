@@ -1,10 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
+    private float rangedAttackTimer;
+    private bool rangedAttackTimerActive;
+    [SerializeField] GameObject ArrowPrefab;
     public float attackRadius = 10f;
     public Transform attackPoint;
     [Header("Mouse or XBox Controller")]
@@ -47,13 +51,34 @@ public class PlayerCombat : MonoBehaviour
                 {
                     lockAttackDiretion = true;
                     tf.rotation = Quaternion.Euler(0, 0, stickAngle * -1);
+                    rangedAttackTimerActive = true;
                 }
             }
             else
-            {
+            {   
+                // if player released stick
+                if (lockAttackDiretion)
+                {
+                    GameObject arrow = Instantiate(ArrowPrefab, attackPoint);
+                    arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(attackPoint.position.x - tf.position.x, attackPoint.position.y - tf.position.y) * rangedAttackTimer * 10;
+                    arrow.transform.parent = null;
+                }
+                rangedAttackTimerActive = false;
                 lockAttackDiretion = false;
                 showGizmo = false;
             }
+        }
+    }
+
+    void Timer()
+    {
+        if (rangedAttackTimerActive)
+        {
+            rangedAttackTimer += Time.deltaTime;
+        }
+        else
+        {
+            rangedAttackTimer = 0;
         }
     }
 
@@ -61,6 +86,7 @@ public class PlayerCombat : MonoBehaviour
     void Update()
     {
         Aim();
+        Timer();
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         stickPos = new Vector2(Input.GetAxisRaw("RightJoyStickHorizontal"), Input.GetAxisRaw("RightJoyStickVertical"));
     }
