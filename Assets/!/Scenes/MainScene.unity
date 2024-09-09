@@ -4915,6 +4915,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ArrowPrefab: {fileID: 1349237188696707155, guid: 806aebeff97e79c46ba1d871aaedfc41,
     type: 3}
+  SlashPrefab: {fileID: 6115032545144693178, guid: e76f5dadde99e1d429fc74413359716d,
+    type: 3}
   attackRadius: 5
   attackPoint: {fileID: 1437027927}
   switchAimControls: 1
@@ -4982,6 +4984,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2026389845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2026389846}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2026389846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026389845}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.68, y: 0.18, z: -4.387089}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4992,3 +5025,4 @@ SceneRoots:
   - {fileID: 362144520}
   - {fileID: 298988527}
   - {fileID: 1869315711}
+  - {fileID: 2026389846}

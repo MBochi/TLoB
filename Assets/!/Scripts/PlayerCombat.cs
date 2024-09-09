@@ -2,19 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    private float rangedAttackTimer;
-    private bool rangedAttackTimerActive;
+    private int attackMode = 0; // 0 = melee, 1 = ranged
+    private float chargedAttackTimer;
+    private bool chargedAttackTimerActive;
     [SerializeField] GameObject ArrowPrefab;
+    [SerializeField] GameObject SlashPrefab;
     public float attackRadius = 10f;
     public Transform attackPoint;
     [Header("Mouse or XBox Controller")]
     public Boolean switchAimControls = false;
     private bool showGizmo = false;
-    private bool lockAttackDiretion = false;
     private Vector2 stickPos;
     private Vector2 mousePos;
     public Camera cam;
@@ -47,24 +49,31 @@ public class PlayerCombat : MonoBehaviour
             if (idleStickPos != Vector2.zero)
             {
                 showGizmo = true;
-                if (!lockAttackDiretion)
-                {
-                    lockAttackDiretion = true;
-                    tf.rotation = Quaternion.Euler(0, 0, stickAngle * -1);
-                    rangedAttackTimerActive = true;
-                }
+                tf.rotation = Quaternion.Euler(0, 0, stickAngle * -1);
+                chargedAttackTimerActive = true;
             }
             else
             {   
                 // if player released stick
-                if (lockAttackDiretion)
+                if (chargedAttackTimerActive)
                 {
-                    GameObject arrow = Instantiate(ArrowPrefab, attackPoint);
-                    arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(attackPoint.position.x - tf.position.x, attackPoint.position.y - tf.position.y) * rangedAttackTimer * 10;
-                    arrow.transform.parent = null;
+                    if (attackMode == 0) // Melee
+                    {
+                        GameObject slash = Instantiate(SlashPrefab, tf);
+                        slash.transform.SetParent(this.transform);
+                        if (chargedAttackTimer > 1f)
+                        {
+                            slash.GetComponent<SpriteRenderer>().color = new Color(1,0,0,1);
+                        }
+                    }
+                    else if (attackMode == 1) // ranged
+                    {
+                        GameObject arrow = Instantiate(ArrowPrefab, attackPoint);
+                        arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(attackPoint.position.x - tf.position.x, attackPoint.position.y - tf.position.y) * chargedAttackTimer * 10;
+                        arrow.transform.parent = null;
+                    }
                 }
-                rangedAttackTimerActive = false;
-                lockAttackDiretion = false;
+                chargedAttackTimerActive = false;
                 showGizmo = false;
             }
         }
@@ -72,13 +81,13 @@ public class PlayerCombat : MonoBehaviour
 
     void Timer()
     {
-        if (rangedAttackTimerActive)
+        if (chargedAttackTimerActive)
         {
-            rangedAttackTimer += Time.deltaTime;
+            chargedAttackTimer += Time.deltaTime;
         }
         else
         {
-            rangedAttackTimer = 0;
+            chargedAttackTimer = 0;
         }
     }
 
