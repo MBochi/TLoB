@@ -8,14 +8,12 @@ using UnityEngine.Animations;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 0;
-    public float attackRadius = 10f;
-    
-    public bool facingRight = true;
 
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;  
     private Vector2 movement;
+    private bool facingRight = true;
 
     private void Start()
     {
