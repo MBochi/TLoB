@@ -56,6 +56,4 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer.flipX = !spriteRenderer.flipX;
         facingRight = !facingRight;
     }
-
-
 }
