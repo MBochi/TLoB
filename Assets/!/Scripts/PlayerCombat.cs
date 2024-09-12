@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] GameObject ArrowPrefab;
     [SerializeField] GameObject SlashPrefab;
+    [SerializeField] GameObject chargeBar;
     public float attackRadius = 10f;
     public Transform attackPoint;
     public Transform attackPointAncor; // rotate object for aiming
@@ -22,6 +24,7 @@ public class PlayerCombat : MonoBehaviour
     private Vector2 stickPos;
     private Vector2 mousePos;
     private Rigidbody2D rb;
+    public static float chargeMax = 1f;
 
     void Start()
     {
@@ -32,6 +35,7 @@ public class PlayerCombat : MonoBehaviour
     {
         Aim();
         Timer();
+        UpdateChargeBar();
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         stickPos = new Vector2(Input.GetAxisRaw("RightJoyStickHorizontal"), Input.GetAxisRaw("RightJoyStickVertical"));
     }
@@ -58,22 +62,24 @@ public class PlayerCombat : MonoBehaviour
             }
             Vector2 idleStickPos = new(Mathf.Round(stickPos.x), Mathf.Round(stickPos.y));
             float stickAngle = Mathf.Atan2(stickPos.y, stickPos.x) * Mathf.Rad2Deg;
-            if (idleStickPos != Vector2.zero)
+            if (idleStickPos != Vector2.zero) // Player aimes with stick
             {
                 showGizmo = true;
                 attackPointAncor.rotation = Quaternion.Euler(0, 0, stickAngle * -1);
                 chargedAttackTimerActive = true;
+                chargeBar.SetActive(true);
             }
             else
             {   
                 // if player released stick
                 if (chargedAttackTimerActive)
                 {
+                    chargeBar.SetActive(false);
                     if (attackMode == 0) // Melee
                     {
                         GameObject slash = Instantiate(SlashPrefab, attackPointAncor);
                         slash.transform.SetParent(this.transform);
-                        if (chargedAttackTimer > 1f)
+                        if (chargedAttackTimer > chargeMax)
                         {
                             slash.GetComponent<SpriteRenderer>().color = new Color(1,0,0,1);
                         }
@@ -81,6 +87,10 @@ public class PlayerCombat : MonoBehaviour
                     else if (attackMode == 1) // ranged
                     {
                         GameObject arrow = Instantiate(ArrowPrefab, attackPoint);
+                        if (chargedAttackTimer > chargeMax)
+                        {
+                            chargedAttackTimer = chargeMax;
+                        } 
                         arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(attackPoint.position.x - attackPointAncor.position.x, attackPoint.position.y - attackPointAncor.position.y) * chargedAttackTimer * 10;
                         arrow.transform.parent = null;
                     }
@@ -101,6 +111,13 @@ public class PlayerCombat : MonoBehaviour
         {
             chargedAttackTimer = 0;
         }
+    }
+
+    void UpdateChargeBar()
+    {
+        float fillPercent = chargedAttackTimer / chargeMax;
+
+        chargeBar.transform.GetChild(1).GetComponent<Image>().fillAmount = fillPercent;
     }
 
     void OnDrawGizmosSelected()
