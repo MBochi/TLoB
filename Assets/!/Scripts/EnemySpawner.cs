@@ -9,12 +9,16 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private float respawnTime;
     private bool isSpawning;
-    // Update is called once per frame
+    public bool activateSpawner = false;
+
     void Update()
-    {      
-        if (!isSpawning)
+    {
+        if (activateSpawner)
         {
-            SpawnEnemy();
+            if (!isSpawning)
+            {
+                SpawnEnemy();
+            }
         }
     }
 
