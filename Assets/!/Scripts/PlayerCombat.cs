@@ -129,4 +129,9 @@ public class PlayerCombat : MonoBehaviour
         }
         
     }
+
+    public int GetAttackMode()
+    {
+        return this.attackMode;
+    }
 }
