@@ -4929,7 +4929,7 @@ GameObject:
   - component: {fileID: 904296838}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5037,7 +5037,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a58237b62afc624ea519501155d552d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  movementSpeed: 5
+  health: 100
+  defense: 0
+  attackDamage: 0
+  attackSpeed: 0
 --- !u!50 &904296836
 Rigidbody2D:
   serializedVersion: 4
@@ -5480,6 +5484,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 6099109020410568, guid: d6c34b6269291b840b24bc72abe1aadc,
     type: 3}
   respawnTime: 1
+  activateSpawner: 1
 --- !u!1 &1796932966
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3764402770700378573}
   - component: {fileID: 9150156858637592621}
   - component: {fileID: 839934373119171906}
-  - component: {fileID: 7237602649767090167}
+  - component: {fileID: 598323820218934773}
   m_Layer: 0
   m_Name: Jelly 0
   m_TagString: Untagged
@@ -159,7 +159,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.99335384, y: 0.8737229}
   m_EdgeRadius: 0
---- !u!114 &7237602649767090167
+--- !u!114 &598323820218934773
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,8 +168,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6099109020410568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 084a5a5d1a897ea4b99f49b44d4fdcb3, type: 3}
+  m_Script: {fileID: 11500000, guid: 45ac5f56f25b9e046a627d8b77ac30f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  aggroRadius: 3
+  movementSpeed: 2
+  health: 100
+  defense: 0
+  attackDamage: 0
+  attackSpeed: 0
+  isChasing: 0
+  aggroRadius: 5

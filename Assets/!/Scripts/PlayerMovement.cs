@@ -5,15 +5,13 @@ using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Stats
 {
-    public float moveSpeed = 0;
-
-    private Rigidbody2D rb;
-    private Animator animator;
-    private SpriteRenderer spriteRenderer;  
     private Vector2 movement;
     private bool facingRight = true;
+    private Rigidbody2D rb;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
@@ -21,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
     //Input
     void Update()
     {
@@ -36,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Move()
     {
-        rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * movement);
+        rb.MovePosition(rb.position + movementSpeed * Time.fixedDeltaTime * movement);
         animator.SetFloat("moveSpeed", movement.sqrMagnitude);
     }
 
