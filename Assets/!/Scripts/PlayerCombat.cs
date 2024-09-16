@@ -15,20 +15,23 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] GameObject ArrowPrefab;
     [SerializeField] GameObject SlashPrefab;
     [SerializeField] GameObject chargeBar;
-    public float attackRadius = 10f;
+    public float attackRadius;
     public Transform attackPoint;
     public Transform attackPointAncor; // rotate object for aiming
+    public LayerMask damageableLayers;
     private bool showGizmo = false;
     [Header("Mouse or XBox Controller")]
     public Boolean switchAimControls = false;
     private Vector2 stickPos;
     private Vector2 mousePos;
     private Rigidbody2D rb;
+    private Stats playerStats;
     public static float chargeMax = 1f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerStats = GetComponent<Stats>();
     }
 
     void Update()
@@ -83,6 +86,22 @@ public class PlayerCombat : MonoBehaviour
                         {
                             slash.GetComponent<SpriteRenderer>().color = new Color(1,0,0,1);
                         }
+                        // Check if enemy is hit and apply damage
+                        Collider2D[] hitObjecsts = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, damageableLayers);
+                        foreach (Collider2D collision_object in hitObjecsts)
+                        {
+                            if(collision_object.gameObject.tag == "Enemy")
+                            {
+                                if (chargedAttackTimer > chargeMax)
+                                {       
+                                    collision_object.GetComponent<EnemyCombat>().TakeDamage(playerStats.GetAttackDamage() * 2);
+                                }
+                                else
+                                {
+                                    collision_object.GetComponent<EnemyCombat>().TakeDamage(playerStats.GetAttackDamage());
+                                }
+                            }
+                        }
                     }
                     else if (attackMode == 1) // ranged
                     {
@@ -91,6 +110,7 @@ public class PlayerCombat : MonoBehaviour
                         {
                             chargedAttackTimer = chargeMax;
                         } 
+                        arrow.GetComponent<Arrow>().SetProjectileDamage(playerStats.GetAttackDamage());
                         arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(attackPoint.position.x - attackPointAncor.position.x, attackPoint.position.y - attackPointAncor.position.y) * chargedAttackTimer * 10;
                         arrow.transform.parent = null;
                     }
@@ -125,7 +145,7 @@ public class PlayerCombat : MonoBehaviour
         Gizmos.color = Color.red;
         if (showGizmo)
         {
-            Gizmos.DrawWireSphere(attackPoint.position, attackRadius / 10);
+            Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
         }
         
     }
