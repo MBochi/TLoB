@@ -2099,38 +2099,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1869315711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &751300394
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 751300395}
-  m_Layer: 0
-  m_Name: AttackPointAncor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &751300395
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751300394}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1437027927}
-  m_Father: {fileID: 904296832}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &790115210
 GameObject:
   m_ObjectHideFlags: 0
@@ -4947,7 +4915,6 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 751300395}
   - {fileID: 417287326}
   m_Father: {fileID: 794114245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5041,8 +5008,9 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   defense: 0
-  attackDamage: 30
+  attackDamage: 50
   attackSpeed: 0
+  attackRadius: 0.5
 --- !u!50 &904296836
 Rigidbody2D:
   serializedVersion: 4
@@ -5128,15 +5096,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
-  SlashPrefab: {fileID: 3294105879809992481, guid: 390b939fe240b18459fe4c3cfcb639a3,
+  SlashPrefab: {fileID: 2656099491465959785, guid: a8377c7b8bfe6f541a7958cb959fe519,
     type: 3}
   chargeBar: {fileID: 1796932966}
-  attackRadius: 0.5
-  attackPoint: {fileID: 1437027927}
-  attackPointAncor: {fileID: 751300395}
-  damageableLayers:
-    serializedVersion: 2
-    m_Bits: 2048
 --- !u!1 &1030973911
 GameObject:
   m_ObjectHideFlags: 0
@@ -5315,37 +5277,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196660644}
   m_CullTransparentMesh: 1
---- !u!1 &1437027926
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1437027927}
-  m_Layer: 0
-  m_Name: AttackPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1437027927
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437027926}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.253, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 751300395}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1600122034
 GameObject:
   m_ObjectHideFlags: 0

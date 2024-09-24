@@ -11,6 +11,7 @@ public class Stats : MonoBehaviour
     public int defense;
     public int attackDamage;
     public int attackSpeed;
+    public float attackRadius;
 
     #region Getters & Setters
     public int GetHealth()
@@ -76,6 +77,14 @@ public class Stats : MonoBehaviour
     public void SetAttackSpeed(int attackSpeed)
     {
         this.attackSpeed = attackSpeed;
+    }
+    public float GetAttakRadius()
+    {
+        return this.attackRadius;
+    }
+    public void SetAttackRadius(float radius)
+    {
+        this.attackRadius = radius;
     }
 }
 #endregion
