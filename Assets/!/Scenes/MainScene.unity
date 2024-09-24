@@ -5128,8 +5128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
-  ArrowPrefab: {fileID: 1349237188696707155, guid: 806aebeff97e79c46ba1d871aaedfc41,
-    type: 3}
   SlashPrefab: {fileID: 3294105879809992481, guid: 390b939fe240b18459fe4c3cfcb639a3,
     type: 3}
   chargeBar: {fileID: 1796932966}
@@ -5139,7 +5137,6 @@ MonoBehaviour:
   damageableLayers:
     serializedVersion: 2
     m_Bits: 2048
-  switchAimControls: 1
 --- !u!1 &1030973911
 GameObject:
   m_ObjectHideFlags: 0
@@ -5441,6 +5438,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8d82042bbebae17489f7f60ccf3fa4af, type: 3}
   - {fileID: 21300000, guid: e968131c59e737a4f90ae3007b3509eb, type: 3}
   playerObj: {fileID: 904296831}
+  image: {fileID: 0}
 --- !u!1 &1628573368
 GameObject:
   m_ObjectHideFlags: 0
