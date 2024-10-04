@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +8,9 @@ public class PlayerCombat : MonoBehaviour
     private bool chargedAttackTimerActive;
     [SerializeField] private Camera cam;
     [SerializeField] GameObject SlashPrefab;
+    [SerializeField] GameObject ExplosionPrefab;
     [SerializeField] GameObject chargeBar;
+    [SerializeField] GameObject attackPoint;
     private Vector2 stickPos;
     private Rigidbody2D rb;
     private Stats playerStats;
@@ -35,6 +32,22 @@ public class PlayerCombat : MonoBehaviour
 
     private void Aim()
     {   
+        AttackX();
+        AttackY();
+    }
+
+    private void AttackY()
+    {
+        if(Input.GetKeyDown(KeyCode.JoystickButton3))
+        {
+            GameObject explosion = Instantiate(ExplosionPrefab, attackPoint.transform);
+            explosion.transform.parent = null;
+            explosion.GetComponent<Explosion>().Setup(10);
+        }
+    }
+
+    private void AttackX()
+    {
         if(Input.GetKeyDown(KeyCode.JoystickButton2))
         {
             chargedAttackTimerActive = true;
