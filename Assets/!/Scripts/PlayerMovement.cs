@@ -9,6 +9,7 @@ public class PlayerMovement : Stats
 {
     private Vector2 movement;
     private bool facingRight = true;
+    private bool gameRunning = true;
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -23,6 +24,7 @@ public class PlayerMovement : Stats
     void Update()
     {
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        PauseGame();
     }
 
     //Actions
@@ -52,5 +54,20 @@ public class PlayerMovement : Stats
     {
         spriteRenderer.flipX = !spriteRenderer.flipX;
         facingRight = !facingRight;
+    }
+
+    private void PauseGame()
+    {
+        
+        if(Input.GetKeyDown(KeyCode.JoystickButton7) && gameRunning == true)
+        {
+            Time.timeScale = 0f;
+            gameRunning = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.JoystickButton7) && gameRunning == false)
+        {
+            Time.timeScale = 1f;
+            gameRunning = true;
+        }
     }
 }
