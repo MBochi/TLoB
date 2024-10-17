@@ -10,6 +10,8 @@ public class EnemyCombat : MonoBehaviour
     private Rigidbody2D enemy_rb;
     private SpriteRenderer spriteRenderer;
     private GameObject playerObj;
+
+    private int expAmount = 100;
     void Start()
     {
         enemyStats = GetComponent<Stats>();
@@ -36,6 +38,7 @@ public class EnemyCombat : MonoBehaviour
 
     private void Die()
     {
+        ExperienceManager.Instance.AddExperience(expAmount);
         Destroy(this.gameObject);
     }
 

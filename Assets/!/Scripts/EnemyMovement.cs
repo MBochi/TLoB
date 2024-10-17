@@ -31,7 +31,7 @@ public class EnemyMovement : Stats
 
         if (distance < aggroRadius && isChasing) 
         { 
-            rb.velocity = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y).normalized * movementSpeed;
+            rb.velocity = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y).normalized * GetMovementSpeed();
         }
         else
         {

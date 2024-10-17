@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance;
     public AudioSource music;
     public AudioSource sfx;
 
@@ -12,11 +13,23 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
+    
     private void Start()
     {
-        music.clip = background;
-        music.Play();
+        if (music.isPlaying)
+        {
+            music.clip = background;
+            music.Play();
+        }   
     }
 }

@@ -9,10 +9,11 @@ public class PlayerMovement : Stats
 {
     private Vector2 movement;
     private bool facingRight = true;
-    private bool gameRunning = true;
+    public bool gameRunning = true;
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    public Canvas canvas;
 
     private void Start()
     {
@@ -35,7 +36,7 @@ public class PlayerMovement : Stats
     }
     public void Move()
     {
-        rb.MovePosition(rb.position + movementSpeed * Time.fixedDeltaTime * movement);
+        rb.MovePosition(rb.position + GetMovementSpeed() * Time.fixedDeltaTime * movement);
         animator.SetFloat("moveSpeed", movement.sqrMagnitude);
     }
 
@@ -58,14 +59,15 @@ public class PlayerMovement : Stats
 
     private void PauseGame()
     {
-        
-        if(Input.GetKeyDown(KeyCode.JoystickButton7) && gameRunning == true)
+        if (Input.GetKeyDown(KeyCode.JoystickButton7) && gameRunning == true)
         {
+            canvas.gameObject.SetActive(true);
             Time.timeScale = 0f;
             gameRunning = false;
         }
         else if (Input.GetKeyDown(KeyCode.JoystickButton7) && gameRunning == false)
         {
+            canvas.gameObject.SetActive(false);
             Time.timeScale = 1f;
             gameRunning = true;
         }
