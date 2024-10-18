@@ -5,29 +5,42 @@ using TMPro;
 
 public class PowerUpMenu : MonoBehaviour
 {
-    /*
-    public TextMeshProUGUI availablePoints;
+    private Stats playerStats;
+    [SerializeField] private TextMeshProUGUI currentLevel;
+    [SerializeField] private TextMeshProUGUI availablePoints;
+    [SerializeField] private TextMeshProUGUI currentDamage;
+    [SerializeField] private TextMeshProUGUI currentMaxHP;
+
+    private void Start()
+    {
+        playerStats = GetComponent<Stats>();
+    }
     public void LoadStats()
     {
-        availablePoints.text = Stats.currentPoints.ToString();
+        currentLevel.text = "Level " + playerStats.GetCurrentLevel().ToString();
+        availablePoints.text = "Available Points: " + playerStats.GetAvailablePoints().ToString();
+        currentMaxHP.text = "MaxHealth: " + playerStats.GetMaxHealth().ToString();
+        currentDamage.text = "Damage: " + playerStats.GetAttackDamage().ToString();
     }
 
     public void MaxHealthUp()
     {
-        if (Stats.currentPoints > 0) {
-            Stats.maxHealth2 += 10;
-            Stats.currentPoints -= 1;
-            availablePoints.text = Stats.currentPoints.ToString();
+        if (playerStats.GetAvailablePoints() > 0) {
+            playerStats.SetMaxHealth(playerStats.GetMaxHealth() + 10);
+            playerStats.SetAvailablePoints(playerStats.GetAvailablePoints() - 1);
+            availablePoints.text = "Available Points: " + playerStats.GetAvailablePoints().ToString();
+            currentMaxHP.text = "MaxHealth: " + playerStats.GetMaxHealth().ToString();
         }   
     }
 
     public void DamageUp()
     {
-        if (Stats.currentPoints > 0)
+        if (playerStats.GetAvailablePoints() > 0)
         {
-            Stats.attackDamage2 += 10;
-            Stats.currentPoints -= 1;
-            availablePoints.text = Stats.currentPoints.ToString();
+            playerStats.SetAttackDamage(playerStats.GetAttackDamage() + 10);
+            playerStats.SetAvailablePoints(playerStats.GetAvailablePoints() - 1);
+            availablePoints.text = "Available Points: " + playerStats.GetAvailablePoints().ToString();
+            currentDamage.text = "Damage: " + playerStats.GetAttackDamage().ToString();
         }
-    }*/
+    }
 }

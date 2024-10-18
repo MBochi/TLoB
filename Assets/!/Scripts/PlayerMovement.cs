@@ -5,27 +5,26 @@ using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class PlayerMovement : Stats
+public class PlayerMovement : MonoBehaviour
 {
+    private Stats playerStats;
     private Vector2 movement;
     private bool facingRight = true;
-    public bool gameRunning = true;
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    public Canvas canvas;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerStats = GetComponent<Stats>();
     }
     //Input
     void Update()
     {
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        PauseGame();
     }
 
     //Actions
@@ -36,7 +35,7 @@ public class PlayerMovement : Stats
     }
     public void Move()
     {
-        rb.MovePosition(rb.position + GetMovementSpeed() * Time.fixedDeltaTime * movement);
+        rb.MovePosition(rb.position + playerStats.GetMovementSpeed() * Time.fixedDeltaTime * movement);
         animator.SetFloat("moveSpeed", movement.sqrMagnitude);
     }
 
@@ -55,21 +54,5 @@ public class PlayerMovement : Stats
     {
         spriteRenderer.flipX = !spriteRenderer.flipX;
         facingRight = !facingRight;
-    }
-
-    private void PauseGame()
-    {
-        if (Input.GetKeyDown(KeyCode.JoystickButton7) && gameRunning == true)
-        {
-            canvas.gameObject.SetActive(true);
-            Time.timeScale = 0f;
-            gameRunning = false;
-        }
-        else if (Input.GetKeyDown(KeyCode.JoystickButton7) && gameRunning == false)
-        {
-            canvas.gameObject.SetActive(false);
-            Time.timeScale = 1f;
-            gameRunning = true;
-        }
     }
 }

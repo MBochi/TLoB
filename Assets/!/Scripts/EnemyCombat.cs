@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyCombat : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Stats enemyStats;
+    [SerializeField] private Stats enemyStats;
     private Rigidbody2D enemy_rb;
     private SpriteRenderer spriteRenderer;
     private GameObject playerObj;
@@ -14,16 +14,16 @@ public class EnemyCombat : MonoBehaviour
     private int expAmount = 100;
     void Start()
     {
-        enemyStats = GetComponent<Stats>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemy_rb = GetComponent<Rigidbody2D>();
         playerObj = GameObject.Find("Player");
+        enemyStats = GetComponent<Stats>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemyStats.GetHealth() <= 0)
+        if (enemyStats.GetCurrentHealth() <= 0)
         {
             Die();
         }
@@ -31,7 +31,7 @@ public class EnemyCombat : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
-        enemyStats.SubHealth(dmg);
+        enemyStats.SetCurrentHealth(enemyStats.GetCurrentHealth() - dmg);
         StartCoroutine(Flash());
         Knockback();
     }

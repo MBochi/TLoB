@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public PlayerMovement playerMovement;
+    public UIController uIController;
 
     public void MainMenu()
     {
@@ -16,8 +16,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Return()
     {
-        gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
         Time.timeScale = 1f;
-        playerMovement.gameRunning = true;
+        uIController.gameRunning = true;
     }
 }

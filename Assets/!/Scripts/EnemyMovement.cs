@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : Stats
+public class EnemyMovement : MonoBehaviour
 {
+    private Stats enemyStats;
     private GameObject player;
     private float distance;
     private SpriteRenderer spriteRenderer;
@@ -14,6 +15,7 @@ public class EnemyMovement : Stats
     void Start()
     {
         player = GameObject.Find("Player");
+        enemyStats = GetComponent<Stats>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         isChasing = true;
@@ -31,7 +33,7 @@ public class EnemyMovement : Stats
 
         if (distance < aggroRadius && isChasing) 
         { 
-            rb.velocity = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y).normalized * GetMovementSpeed();
+            rb.velocity = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y).normalized * enemyStats.GetMovementSpeed();
         }
         else
         {

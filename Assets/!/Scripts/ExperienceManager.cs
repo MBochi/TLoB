@@ -17,6 +17,7 @@ public class ExperienceManager : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 

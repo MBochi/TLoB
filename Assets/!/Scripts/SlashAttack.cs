@@ -5,18 +5,17 @@ using UnityEngine;
 
 public class SlashAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Stats playerStats;
     private float timer = 0f;
     private int damage;
     public int radius;
     public LayerMask damageableLayers;
-    private Stats playerStats;
     private Vector2 stickPos;
     public GameObject attackPoint;
     
     void Start()
     {
-        playerStats = GameObject.FindWithTag("Player").GetComponent<Stats>();
+        playerStats = GameObject.Find("Player").GetComponent<Stats>();
         CheckCollision();
     }
 
@@ -40,7 +39,7 @@ public class SlashAttack : MonoBehaviour
     
     private void CheckCollision()
     {
-        Collider2D[] hitObjecsts = Physics2D.OverlapCircleAll(attackPoint.transform.position, playerStats.GetAttakRadius(), damageableLayers);
+        Collider2D[] hitObjecsts = Physics2D.OverlapCircleAll(attackPoint.transform.position, playerStats.GetAttackRadius(), damageableLayers);
         foreach (Collider2D collision_object in hitObjecsts)
         {
             if(collision_object.gameObject.tag == "Enemy")
@@ -52,6 +51,6 @@ public class SlashAttack : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(attackPoint.transform.position, playerStats.GetAttakRadius());
+        Gizmos.DrawWireSphere(attackPoint.transform.position, playerStats.GetAttackRadius());
     }
 }

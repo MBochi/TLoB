@@ -13,13 +13,12 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] GameObject attackPoint;
     private Vector2 stickPos;
     private Rigidbody2D rb;
-    private Stats playerStats;
+    [SerializeField] private Stats playerStats;
     public static float chargeMax = 1f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerStats = GetComponent<Stats>();
     }
 
     void Update()

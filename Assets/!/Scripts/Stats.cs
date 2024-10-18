@@ -5,17 +5,9 @@ using UnityEngine;
 
 public class Stats : MonoBehaviour
 {
+    [SerializeField] private StatsSO statsSO;
     [SerializeField] private int movementSpeed;
-    [SerializeField] private int health;
-    [SerializeField] private int maxHealth;
-    [SerializeField] private int currentExperience;
-    [SerializeField] private int maxExperience;
-    [SerializeField] private int currentLevel;
-    [SerializeField] private int currentPoints;
-    [SerializeField] private int defense;
-    [SerializeField] private int attackDamage;
-    [SerializeField] private int attackSpeed;
-    [SerializeField] private float attackRadius;
+    [SerializeField] private int currentHealth;
 
     private void OnEnable()
     {
@@ -28,8 +20,8 @@ public class Stats : MonoBehaviour
     }
     private void HandleExperienceChange(int newExperience)
     {
-        currentExperience += newExperience;
-        if (currentExperience >= maxExperience) 
+        statsSO.currentExperience += newExperience;
+        if (statsSO.currentExperience >= statsSO.maxExperience) 
         {
             LevelUp();
         }
@@ -37,68 +29,76 @@ public class Stats : MonoBehaviour
 
     private void LevelUp() 
     {
-        health = maxHealth;
-        currentLevel++;
-        currentPoints++;
-        currentExperience = 0;
-        maxExperience += 100;
+        currentHealth = statsSO.maxHealth;
+        statsSO.currentLevel++;
+        statsSO.currentPoints++;
+        statsSO.currentExperience = 0;
+        statsSO.maxExperience += 100;
     }
     #region Getters & Setters
-    public int GetHealth()
+    public int GetCurrentHealth()
     {
-        return this.health;
+        return this.currentHealth;
     }
-    public void SetHealth(int health)
+    public void SetCurrentHealth(int amount)
     {
-        this.health = health;
+        this.currentHealth = amount;
     }
     public void AddHealth(int amount)
     {
-        this.health += amount;
-        if (this.health > maxHealth)
+        this.currentHealth += amount;
+        if (this.currentHealth > statsSO.maxHealth)
         {
-            this.health = maxHealth;
+            this.currentHealth = statsSO.maxHealth;
         }
     }
     public void SubHealth(int amount)
     {
-        this.health -= amount;
-        if (this.health < 0)
+        this.currentHealth -= amount;
+        if (this.currentHealth < 0)
         {
-            this.health = 0;
+            this.currentHealth = 0;
         }
     }
     public int GetMaxHealth()
     {
-        return this.maxHealth;
+        return statsSO.maxHealth;
     }
     public void SetMaxHealth(int maxHealth)
     {
-        this.maxHealth = maxHealth;
+        statsSO.maxHealth = maxHealth;
     }
     public int GetCurrentExperience()
     {
-        return this.currentExperience;
+        return statsSO.currentExperience;
     }
     public void SetCurrentExperience(int currentExp)
     {
-        this.currentExperience = currentExp;
+        statsSO.currentExperience = currentExp;
     }
     public int GetMaxExperience()
     {
-        return this.maxExperience;
+        return statsSO.maxExperience;
     }
     public void SetMaxExperience(int maxExp)
     {
-        this.maxExperience = maxExp;
+        statsSO.maxExperience = maxExp;
     }
     public int GetCurrentLevel()
     {
-        return this.currentLevel;
+        return statsSO.currentLevel;
     }
     public void SetCurrentLevel(int level)
     {
-        this.currentLevel = level;
+        statsSO.currentLevel = level;
+    }
+    public int GetAvailablePoints()
+    {
+        return statsSO.currentPoints;
+    }
+    public void SetAvailablePoints(int level)
+    {
+        statsSO.currentPoints = level;
     }
     public int GetMovementSpeed()
     {
@@ -110,35 +110,35 @@ public class Stats : MonoBehaviour
     }
     public int GetDefense()
     {
-        return this.defense;
+        return statsSO.defense;
     }
     public void SetDefense(int defense)
     {
-        this.defense = defense;
+        statsSO.defense = defense;
     }
     public int GetAttackDamage()
     {
-        return this.attackDamage;
+        return statsSO.attackDamage;
     }
     public void SetAttackDamage(int attackDamage)
     {
-        this.attackDamage = attackDamage;
+        statsSO.attackDamage = attackDamage;
     }
     public int GetAttackSpeed()
     {
-        return this.attackSpeed;
+        return statsSO.attackSpeed;
     }
     public void SetAttackSpeed(int attackSpeed)
     {
-        this.attackSpeed = attackSpeed;
+        statsSO.attackSpeed = attackSpeed;
     }
-    public float GetAttakRadius()
+    public float GetAttackRadius()
     {
-        return this.attackRadius;
+        return statsSO.attackRadius;
     }
     public void SetAttackRadius(float radius)
     {
-        this.attackRadius = radius;
+        statsSO.attackRadius = radius;
     }
 }
 #endregion
