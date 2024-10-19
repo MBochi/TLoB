@@ -50,6 +50,14 @@ public class EnemyCombat : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerCombat>().TakeDamage(enemyStats.GetAttackDamage());
+        }
+    }
+
     IEnumerator Flash()
     {
         for (int n = 0; n < 1; n++)

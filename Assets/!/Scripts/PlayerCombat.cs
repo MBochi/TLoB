@@ -17,6 +17,7 @@ public class PlayerCombat : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private Stats playerStats;
     public static float chargeMax = 1f;
+    private SpriteRenderer spriteRenderer;
 
     private bool canAttackX = true;
     private bool canAttackY = true;
@@ -24,6 +25,7 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -40,6 +42,10 @@ public class PlayerCombat : MonoBehaviour
     {   
         AttackX();
         AttackY();
+        if(playerStats.GetCurrentHealth() == 0)
+        {
+            Die();
+        }
     }
 
     private void AttackY()
@@ -120,5 +126,27 @@ public class PlayerCombat : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         canAttackY = true;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        playerStats.SubHealth(damage);
+        StartCoroutine(Flash());
+    }
+
+    private void Die()
+    {
+        Destroy(this.gameObject);
+    }
+
+    IEnumerator Flash()
+    {
+        for (int n = 0; n < 1; n++)
+        {
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }
