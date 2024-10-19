@@ -140,5 +140,24 @@ public class Stats : MonoBehaviour
     {
         statsSO.attackRadius = radius;
     }
+
+    public float GetXCooldown()
+    {
+        return statsSO.XCooldown;
+    }
+    public void SetXCooldown(float cooldown)
+    {
+        statsSO.XCooldown = cooldown;
+    }
+
+    public float GetYCooldown()
+    {
+        return statsSO.YCooldown;
+    }
+    public void SetYCooldown(float cooldown)
+    {
+        statsSO.YCooldown = cooldown;
+    }
+
 }
 #endregion

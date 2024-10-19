@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,9 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Stats playerStats;
     public static float chargeMax = 1f;
 
+    private bool canAttackX = true;
+    private bool canAttackY = true;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,7 +28,7 @@ public class PlayerCombat : MonoBehaviour
     void Update()
     {
         Aim();
-        Timer();
+        ChargeXTimer();
         UpdateChargeBar();
         stickPos = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
@@ -37,23 +41,27 @@ public class PlayerCombat : MonoBehaviour
 
     private void AttackY()
     {
-        if(Input.GetKeyDown(KeyCode.JoystickButton3))
+        if(Input.GetKeyDown(KeyCode.JoystickButton3) && canAttackY)
         {
+            canAttackY = false;
+            StartCoroutine(YCooldownTimer(playerStats.GetYCooldown()));
             GameObject explosion = Instantiate(ExplosionPrefab, attackPoint.transform);
             explosion.transform.parent = null;
-            explosion.GetComponent<Explosion>().Setup(10);
+            explosion.GetComponent<Explosion>().Setup(playerStats.GetAttackDamage() / 2);
         }
     }
 
     private void AttackX()
     {
-        if(Input.GetKeyDown(KeyCode.JoystickButton2))
+        if(Input.GetKeyDown(KeyCode.JoystickButton2) && canAttackX)
         {
+            canAttackX = false;
+            StartCoroutine(XCooldownTimer(playerStats.GetXCooldown()));
             chargedAttackTimerActive = true;
             chargeBar.SetActive(true);
         }
 
-        if (Input.GetKeyUp(KeyCode.JoystickButton2))
+        if (Input.GetKeyUp(KeyCode.JoystickButton2) && !canAttackX)
         {   
             if (chargedAttackTimerActive)
             {
@@ -75,7 +83,7 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    void Timer()
+    void ChargeXTimer()
     {
         if (chargedAttackTimerActive)
         {
@@ -96,5 +104,17 @@ public class PlayerCombat : MonoBehaviour
     public int GetAttackMode()
     {
         return this.attackMode;
+    }
+
+    IEnumerator XCooldownTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        canAttackX = true;
+    }
+
+    IEnumerator YCooldownTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        canAttackY = true;
     }
 }

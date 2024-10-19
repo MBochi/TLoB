@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentExperience: 0
-  maxExperience: 300
-  currentLevel: 1
-  currentPoints: 0
+  currentExperience: 300
+  maxExperience: 500
+  currentLevel: 3
+  currentPoints: 2
   defense: 0
   attackDamage: 20
   attackSpeed: 0
   attackRadius: 0.5
+  XCooldown: 1
+  YCooldown: 3

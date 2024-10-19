@@ -14,6 +14,8 @@ public class StatsSO : ScriptableObject
     public int attackDamage;
     public int attackSpeed;
     public float attackRadius;
+    public float XCooldown;
+    public float YCooldown;
 }
 
 

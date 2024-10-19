@@ -32,7 +32,7 @@ public class Explosion : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<EnemyCombat>().TakeDamage(10);
+            collision.gameObject.GetComponent<EnemyCombat>().TakeDamage(damage);
         }
     }
 }
