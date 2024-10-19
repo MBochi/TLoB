@@ -5484,6 +5484,7 @@ MonoBehaviour:
     type: 3}
   chargeBar: {fileID: 1796932966}
   attackPoint: {fileID: 2122806729}
+  rotationPoint: {fileID: 1785018635}
   playerStats: {fileID: 904296839}
 --- !u!114 &904296839
 MonoBehaviour:
