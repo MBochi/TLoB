@@ -12,6 +12,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] GameObject ExplosionPrefab;
     [SerializeField] GameObject chargeBar;
     [SerializeField] GameObject attackPoint;
+    [SerializeField] GameObject rotationPoint;
     private Vector2 stickPos;
     private Rigidbody2D rb;
     [SerializeField] private Stats playerStats;
@@ -30,7 +31,9 @@ public class PlayerCombat : MonoBehaviour
         Aim();
         ChargeXTimer();
         UpdateChargeBar();
-        stickPos = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+       
+        stickPos = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Horizontal"));
+
     }
 
     private void Aim()
@@ -41,7 +44,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void AttackY()
     {
-        if(Input.GetKeyDown(KeyCode.JoystickButton3) && canAttackY)
+        if((Input.GetKey(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.JoystickButton3)) && canAttackY )
         {
             canAttackY = false;
             StartCoroutine(YCooldownTimer(playerStats.GetYCooldown()));
@@ -53,20 +56,21 @@ public class PlayerCombat : MonoBehaviour
 
     private void AttackX()
     {
-        if(Input.GetKeyDown(KeyCode.JoystickButton2) && canAttackX)
+        if((Input.GetKey(KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.JoystickButton2)) && canAttackX)
         {
-            canAttackX = false;
-            StartCoroutine(XCooldownTimer(playerStats.GetXCooldown()));
             chargedAttackTimerActive = true;
             chargeBar.SetActive(true);
         }
 
-        if (Input.GetKeyUp(KeyCode.JoystickButton2) && !canAttackX)
+        if (Input.GetKeyUp(KeyCode.JoystickButton2) && canAttackX)
         {   
+            canAttackX = false;
+            StartCoroutine(XCooldownTimer(playerStats.GetXCooldown()));
             if (chargedAttackTimerActive)
             {
                 chargeBar.SetActive(false);
-                GameObject slash = Instantiate(SlashPrefab, this.transform);
+                GameObject slash = Instantiate(SlashPrefab, rotationPoint.transform);
+                slash.transform.parent = this.transform;
 
                 if (chargedAttackTimer > chargeMax)
                 {

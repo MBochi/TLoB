@@ -12,6 +12,7 @@ public class SlashAttack : MonoBehaviour
     public LayerMask damageableLayers;
     private Vector2 stickPos;
     public GameObject attackPoint;
+    private float stickAngle = 0f;
     
     void Start()
     {
@@ -22,9 +23,6 @@ public class SlashAttack : MonoBehaviour
     public void Setup(int damage)
     {
         this.damage = damage;
-        stickPos = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        float stickAngle = Mathf.Atan2(stickPos.y, stickPos.x) * Mathf.Rad2Deg;
-        this.transform.rotation = Quaternion.Euler(0, 0, stickAngle);
     }
 
     // Update is called once per frame
