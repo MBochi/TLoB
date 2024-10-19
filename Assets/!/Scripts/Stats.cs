@@ -8,9 +8,14 @@ public class Stats : MonoBehaviour
     [SerializeField] private StatsSO statsSO;
     [SerializeField] private int movementSpeed;
     [SerializeField] private int currentHealth;
+    [SerializeField] private GameObject experienceManager;
 
     private void OnEnable()
     {
+        if (ExperienceManager.Instance == null)
+        {
+            experienceManager.SetActive(true);
+        }
         ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
     }
 
