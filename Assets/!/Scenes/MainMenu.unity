@@ -3397,7 +3397,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe45c230c7af034e956d1a682c06b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingsSO: {fileID: 11400000, guid: 30afeea0a5468cd4e8c297f97f4c2161, type: 2}
   audioMixer: {fileID: 24100000, guid: 70ccd63b387d1fb4aa47953246a8d4c7, type: 2}
+  volumeSlider: {fileID: 1591758398}
 --- !u!114 &1621710458
 MonoBehaviour:
   m_ObjectHideFlags: 0

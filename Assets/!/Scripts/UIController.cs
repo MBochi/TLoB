@@ -14,7 +14,7 @@ public class UIController : MonoBehaviour
 
     private void PauseGame()
     {
-        if (Input.GetKeyDown(KeyCode.JoystickButton7) && gameRunning == true)
+        if (Input.GetKeyDown(KeyCode.JoystickButton7) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape) && gameRunning == true)
         {
             canvas.gameObject.SetActive(true);
             Time.timeScale = 0f;
