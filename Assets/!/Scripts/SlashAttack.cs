@@ -12,7 +12,6 @@ public class SlashAttack : MonoBehaviour
     public LayerMask damageableLayers;
     private Vector2 stickPos;
     public GameObject attackPoint;
-    private float stickAngle = 0f;
     
     void Start()
     {
