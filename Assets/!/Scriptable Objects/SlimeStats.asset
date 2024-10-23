@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: SlimeStats
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentExperience: 100
-  maxExperience: 2000
-  currentLevel: 20
-  currentPoints: 20
+  currentExperience: 2400
+  maxExperience: 2900
+  currentLevel: 29
+  currentPoints: 29
   defense: 0
-  attackDamage: 0
+  attackDamage: 10
   attackSpeed: 0
   attackRadius: 538.6
+  XCooldown: 0
+  YCooldown: 0
