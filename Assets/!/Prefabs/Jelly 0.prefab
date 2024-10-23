@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isChasing: 0
   aggroRadius: 10
+  respawnTime: 20
 --- !u!114 &2058528805334092926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,4 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad23f59319ac1c499d8dbd3bdfd2a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aIBehavior: {fileID: 11400000, guid: aa004e93a8a2fa34685c8dfd2dff8812, type: 2}
+  aIBehavior:
+  - {fileID: 11400000, guid: aa004e93a8a2fa34685c8dfd2dff8812, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}

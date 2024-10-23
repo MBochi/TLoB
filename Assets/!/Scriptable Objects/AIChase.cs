@@ -14,7 +14,7 @@ public class AIChase : AIBehavior
             
             if (enemyAI.gameObject.TryGetComponent<EnemyMovement>(out var movement)) 
             {
-                movement.MoveTowardsTarget(target.transform.position);
+                movement.TargetInAttackRange(target.transform.position);
             }
         } 
     }

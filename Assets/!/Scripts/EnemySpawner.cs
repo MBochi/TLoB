@@ -18,7 +18,6 @@ public class EnemySpawner : MonoBehaviour
         {
             if (!isSpawning)
             {
-                Debug.Log("Spawning" + isSpawning);
                 SpawnEnemy();
             }
         }
@@ -26,13 +25,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        isSpawning = true;
-        int number = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        Debug.Log(number);
-
-
         if (GameObject.FindGameObjectsWithTag("Enemy").Length < maxEnemies)
         {
+            isSpawning = true;
             Instantiate(enemyPrefab, this.transform.position + new Vector3(UnityEngine.Random.Range(-0.5f, 0.5f), UnityEngine.Random.Range(-1.5f, 1.5f), 0f), Quaternion.identity);
             StartCoroutine(Timer());
         }
@@ -40,7 +35,6 @@ public class EnemySpawner : MonoBehaviour
         {
             isSpawning = false;
         }
-        
     }
 
     IEnumerator Timer()

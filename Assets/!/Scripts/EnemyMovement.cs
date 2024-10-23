@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -10,8 +11,9 @@ public class EnemyMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
 
-    [SerializeField] private bool isChasing;
-    [SerializeField] private float aggroRadius;
+    [SerializeField] public bool isChasing;
+    [SerializeField] public float aggroRadius;
+
     void Start()
     {
         player = GameObject.Find("Player");
@@ -26,21 +28,30 @@ public class EnemyMovement : MonoBehaviour
         Flip();
     }
 
-    public void MoveTowardsTarget(Vector3 targetPosition)
+    public void TargetInAttackRange(Vector3 targetPosition)
     {
         distance = Vector2.Distance(transform.position, targetPosition);
 
         if (distance < aggroRadius && isChasing)
         {
-            rb.velocity = new Vector2(targetPosition.x - transform.position.x, targetPosition.y - transform.position.y).normalized * enemyStats.GetMovementSpeed();
+            MoveTowardsTarget(targetPosition);
         }
         else
         {
-            //IdleBehavior TODO
-            rb.velocity = Vector2.zero;
+            Idle();
         }
     }
+
+    public void MoveTowardsTarget(Vector3 targetPosition)
+    {
+        rb.velocity = new Vector2(targetPosition.x - transform.position.x, targetPosition.y - transform.position.y).normalized * enemyStats.GetMovementSpeed();
+    }
   
+    public void Idle()
+    {
+        rb.velocity = Vector2.zero;
+    }
+
     private void Flip()
     {
         Vector2 direction = transform.position - player.transform.position;
