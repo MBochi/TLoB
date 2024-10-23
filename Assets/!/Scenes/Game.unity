@@ -5484,6 +5484,7 @@ MonoBehaviour:
     type: 3}
   chargeBar: {fileID: 1796932966}
   attackPoint: {fileID: 2122806729}
+  rotationPoint: {fileID: 1785018635}
   playerStats: {fileID: 904296839}
 --- !u!114 &904296839
 MonoBehaviour:
@@ -6127,6 +6128,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 6099109020410568, guid: d6c34b6269291b840b24bc72abe1aadc,
     type: 3}
   respawnTime: 1
+  maxEnemies: 5
   activateSpawner: 1
 --- !u!1 &1738842431
 GameObject:

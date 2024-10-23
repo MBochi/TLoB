@@ -21,6 +21,6 @@ public class RotationControllerNew : MonoBehaviour
         stickAngle = Mathf.Atan2(stickPos.y, stickPos.x) * Mathf.Rad2Deg;
         this.transform.rotation = Quaternion.Euler(0, 0, stickAngle);
         //}
-        Debug.Log(stickAngle);
+        //Debug.Log(stickAngle);
     }
 }

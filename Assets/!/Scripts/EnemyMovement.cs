@@ -24,23 +24,23 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         Flip();
-        Chase();
     }
 
-    public void Chase()
+    public void MoveTowardsTarget(Vector3 targetPosition)
     {
-        distance = Vector2.Distance(transform.position, player.transform.position);
+        distance = Vector2.Distance(transform.position, targetPosition);
 
-        if (distance < aggroRadius && isChasing) 
-        { 
-            rb.velocity = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y).normalized * enemyStats.GetMovementSpeed();
+        if (distance < aggroRadius && isChasing)
+        {
+            rb.velocity = new Vector2(targetPosition.x - transform.position.x, targetPosition.y - transform.position.y).normalized * enemyStats.GetMovementSpeed();
         }
         else
         {
+            //IdleBehavior TODO
             rb.velocity = Vector2.zero;
         }
-          
     }
+  
     private void Flip()
     {
         Vector2 direction = transform.position - player.transform.position;

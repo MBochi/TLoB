@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 598323820218934773}
   - component: {fileID: 2058528805334092926}
   - component: {fileID: 3865503336684851802}
+  - component: {fileID: -3010496999050116670}
   m_Layer: 11
   m_Name: Jelly 0
   m_TagString: Enemy
@@ -174,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isChasing: 0
-  aggroRadius: 5
+  aggroRadius: 10
 --- !u!114 &2058528805334092926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,3 +204,17 @@ MonoBehaviour:
   statsSO: {fileID: 11400000, guid: da5616a9d2db7d940862f55536b3d927, type: 2}
   movementSpeed: 2
   currentHealth: 100
+  experienceManager: {fileID: 0}
+--- !u!114 &-3010496999050116670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6099109020410568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad23f59319ac1c499d8dbd3bdfd2a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aIBehavior: {fileID: 11400000, guid: aa004e93a8a2fa34685c8dfd2dff8812, type: 2}
