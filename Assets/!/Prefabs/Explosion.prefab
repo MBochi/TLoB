@@ -156,6 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752144ff0859045449d562fc8e259126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BurnEffectPrefab: {fileID: 5486069444889549738, guid: 871ce1caf66955d47a6fe5f59fb3298a,
+    type: 3}
 --- !u!114 &-4008061780278990155
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -41,7 +41,7 @@ public class SlashAttack : MonoBehaviour
         {
             if(collision_object.gameObject.tag == "Enemy")
             {
-                collision_object.GetComponent<EnemyCombat>().TakeDamage(this.damage);
+                collision_object.GetComponent<EnemyCombat>().TakeDamage(this.damage, true);
             }
         }
     }

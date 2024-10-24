@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d47d3d1ab8c8e8a45b2c6f770b9c54e0, type: 3}
   m_Name: SlimeStats
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentExperience: 2400
-  maxExperience: 2900
-  currentLevel: 29
-  currentPoints: 29
+  maxHealth: 1000
+  currentExperience: 1100
+  maxExperience: 3200
+  currentLevel: 32
+  currentPoints: 32
   defense: 0
   attackDamage: 10
   attackSpeed: 0

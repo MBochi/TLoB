@@ -176,7 +176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isChasing: 0
   aggroRadius: 10
-  respawnTime: 20
 --- !u!114 &2058528805334092926
 MonoBehaviour:
   m_ObjectHideFlags: 0

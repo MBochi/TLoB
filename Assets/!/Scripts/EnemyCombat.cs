@@ -35,11 +35,14 @@ public class EnemyCombat : MonoBehaviour
         //  Handling of current running status effects
     }
 
-    public void TakeDamage(int dmg)
+    public void TakeDamage(int dmg, bool apply_knockback=false)
     {
         enemyStats.SetCurrentHealth(enemyStats.GetCurrentHealth() - dmg);
         StartCoroutine(Flash());
-        Knockback();
+        if (apply_knockback) 
+        {
+            Knockback();
+        }
     }
 
     private void Die()

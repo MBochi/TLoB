@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    private Vector2 stickPos;
     private float timer = 0f;
     private int damage;
+    [SerializeField] GameObject BurnEffectPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +32,23 @@ public class Explosion : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<EnemyCombat>().TakeDamage(damage);
+            collision.gameObject.GetComponent<EnemyCombat>().TakeDamage(this.damage, true);
+
+            bool isBurning = false;
+            foreach (Transform child in collision.transform)
+            {
+                if(child.gameObject.tag == "StatusEffect")
+                {
+                    isBurning = true;
+                }
+            }
+
+            if (!isBurning)
+            {
+                GameObject burn = Instantiate(BurnEffectPrefab, collision.transform);
+                burn.GetComponent<BurnEffect>().Setup(5, 5, 1, collision.gameObject.GetComponent<EnemyCombat>()); //Stats noch hardcoded
+            }
+            
         }
     }
 }
