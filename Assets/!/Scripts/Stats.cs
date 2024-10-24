@@ -32,6 +32,10 @@ public class Stats : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        this.currentHealth = this.GetMaxHealth();
+    }
     private void LevelUp() 
     {
         currentHealth = statsSO.maxHealth;

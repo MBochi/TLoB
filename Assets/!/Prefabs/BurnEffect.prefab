@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1568568628456906112}
   m_Layer: 0
   m_Name: BurnEffect
-  m_TagString: StatusEffet
+  m_TagString: StatusEffect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
