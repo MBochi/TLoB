@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5861446345241631664}
   - component: {fileID: 637999399543064241}
   - component: {fileID: 5275814007257405550}
+  - component: {fileID: 7660038142223608006}
   m_Layer: 0
   m_Name: slash
   m_TagString: Untagged
@@ -103,6 +104,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   attackPoint: {fileID: 2662525990583665003}
+--- !u!114 &7660038142223608006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2656099491465959785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1382f7f171f6c4584a9bf2ab281b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponStatsSO: {fileID: 11400000, guid: 019e8ef0070869f45be2bfe7715a9b41, type: 2}
 --- !u!1 &2662525990583665003
 GameObject:
   m_ObjectHideFlags: 0

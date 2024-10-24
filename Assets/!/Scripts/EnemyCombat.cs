@@ -27,6 +27,12 @@ public class EnemyCombat : MonoBehaviour
         {
             Die();
         }
+        StatusEffets();
+    }
+
+    private void StatusEffets()
+    {
+        //  Handling of current running status effects
     }
 
     public void TakeDamage(int dmg)

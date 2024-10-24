@@ -1,4 +1,5 @@
 using System.Collections;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -53,10 +54,14 @@ public class PlayerCombat : MonoBehaviour
         if((Input.GetKey(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.JoystickButton3)) && canAttackY )
         {
             canAttackY = false;
-            StartCoroutine(YCooldownTimer(playerStats.GetYCooldown()));
+
             GameObject explosion = Instantiate(ExplosionPrefab, attackPoint.transform);
             explosion.transform.parent = null;
-            explosion.GetComponent<Explosion>().Setup(playerStats.GetAttackDamage() / 2);
+
+            StartCoroutine(YCooldownTimer(explosion.GetComponent<WeaponStats>().GetCooldown()));
+
+            
+            explosion.GetComponent<Explosion>().Setup((int)(playerStats.GetComponent<Stats>().GetAttackDamage()/2 + explosion.GetComponent<WeaponStats>().GetAttackDamage()));
         }
     }
 
@@ -71,21 +76,25 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.JoystickButton2) && canAttackX)
         {   
             canAttackX = false;
-            StartCoroutine(XCooldownTimer(playerStats.GetXCooldown()));
+            
             if (chargedAttackTimerActive)
             {
                 chargeBar.SetActive(false);
                 GameObject slash = Instantiate(SlashPrefab, rotationPoint.transform);
                 slash.transform.parent = this.transform;
 
+                StartCoroutine(XCooldownTimer(slash.GetComponent<WeaponStats>().GetCooldown()));
+
+                int dmg = playerStats.GetComponent<Stats>().GetAttackDamage() + slash.GetComponent<WeaponStats>().GetAttackDamage();
+
                 if (chargedAttackTimer > chargeMax)
                 {
                     slash.GetComponent<SpriteRenderer>().color = new Color(1,0,0,1);
-                    slash.GetComponent<SlashAttack>().Setup(playerStats.GetAttackDamage() * 2);
+                    slash.GetComponent<SlashAttack>().Setup(dmg * 2);
                 }
                 else
                 {
-                    slash.GetComponent<SlashAttack>().Setup(playerStats.GetAttackDamage());
+                    slash.GetComponent<SlashAttack>().Setup(dmg);
                 }
                 
             }
