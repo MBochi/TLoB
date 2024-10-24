@@ -40,6 +40,8 @@ public class Explosion : MonoBehaviour
                 if(child.gameObject.tag == "StatusEffect")
                 {
                     isBurning = true;
+                    child.gameObject.GetComponent<BurnEffect>().ResetBurnTime();
+                    break;
                 }
             }
 

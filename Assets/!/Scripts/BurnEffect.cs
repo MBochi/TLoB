@@ -29,6 +29,11 @@ public class BurnEffect : MonoBehaviour
         this.enemyCombat = combat;
     }
 
+    public void ResetBurnTime()
+    {
+        this.totalTimer = 0f;
+    }
+
     // Update is called once per frame
     void Update()
     {
