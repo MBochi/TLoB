@@ -7,4 +7,6 @@ public class WeaponStatsSO : ScriptableObject
 {
     public int damage;
     public float cooldown;
+    public float duration;
+    public int maxTargets;
 }

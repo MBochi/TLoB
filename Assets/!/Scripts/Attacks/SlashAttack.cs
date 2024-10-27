@@ -8,10 +8,9 @@ public class SlashAttack : MonoBehaviour
     private Stats playerStats;
     private float timer = 0f;
     private int damage;
-    public int radius;
     public LayerMask damageableLayers;
     private Vector2 stickPos;
-    public GameObject attackPoint;
+    private GameObject attackPoint;
     
     void Start()
     {
@@ -19,16 +18,17 @@ public class SlashAttack : MonoBehaviour
         CheckCollision();
     }
 
-    public void Setup(int damage)
+    public void Setup(int damage, GameObject attackPoint)
     {
         this.damage = damage;
+        this.attackPoint = attackPoint;
     }
 
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= 0.2f)
+        if (timer >= .2f)
         {
             Destroy(this.gameObject);
         }

@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   cooldown: 3
+  duration: 9999
+  maxTargets: 9999

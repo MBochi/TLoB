@@ -14,4 +14,14 @@ public class WeaponStats : MonoBehaviour
     {
         return weaponStatsSO.cooldown;
     }
+
+    public float GetDuration()
+    {
+        return weaponStatsSO.duration;
+    }
+
+    public int GetMaxTargets()
+    {
+        return weaponStatsSO.maxTargets;
+    }
 }

@@ -153,7 +153,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3434378758493662953}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 752144ff0859045449d562fc8e259126, type: 3}
+  m_Script: {fileID: 11500000, guid: e95b1091ad9040d4d9223af474c87751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BurnEffectPrefab: {fileID: 5486069444889549738, guid: 871ce1caf66955d47a6fe5f59fb3298a,

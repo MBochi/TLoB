@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,8 +13,10 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] GameObject SlashPrefab;
     [SerializeField] GameObject ExplosionPrefab;
+    [SerializeField] GameObject LightningBoltPrefab;
     [SerializeField] GameObject chargeBar;
-    [SerializeField] GameObject attackPoint;
+    [SerializeField] GameObject explosionSpawnPoint;
+    [SerializeField] GameObject slashAttackPoint;
     [SerializeField] GameObject rotationPoint;
     private Vector2 stickPos;
     private Rigidbody2D rb;
@@ -22,6 +26,7 @@ public class PlayerCombat : MonoBehaviour
 
     private bool canAttackX = true;
     private bool canAttackY = true;
+    private bool canAttackB = true;
 
     void Start()
     {
@@ -43,9 +48,21 @@ public class PlayerCombat : MonoBehaviour
     {   
         AttackX();
         AttackY();
+        AttackB();
         if(playerStats.GetCurrentHealth() == 0)
         {
             Die();
+        }
+    }
+
+    private void AttackB()
+    {
+        if((Input.GetKey(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.JoystickButton1)) && canAttackB)
+        {
+            canAttackB = false;
+            GameObject lightningBolt = Instantiate(LightningBoltPrefab, this.transform);
+            lightningBolt.GetComponent<LighningtBoltController>().Setup(lightningBolt.GetComponent<WeaponStats>().GetMaxTargets(), 1f, (int)(playerStats.GetComponent<Stats>().GetAttackDamage()/10 + lightningBolt.GetComponent<WeaponStats>().GetAttackDamage()), lightningBolt.GetComponent<WeaponStats>().GetDuration());
+            StartCoroutine(BCooldownTimer(lightningBolt.GetComponent<WeaponStats>().GetCooldown()));
         }
     }
 
@@ -55,7 +72,7 @@ public class PlayerCombat : MonoBehaviour
         {
             canAttackY = false;
 
-            GameObject explosion = Instantiate(ExplosionPrefab, attackPoint.transform);
+            GameObject explosion = Instantiate(ExplosionPrefab, explosionSpawnPoint.transform);
             explosion.transform.parent = null;
 
             StartCoroutine(YCooldownTimer(explosion.GetComponent<WeaponStats>().GetCooldown()));
@@ -90,11 +107,11 @@ public class PlayerCombat : MonoBehaviour
                 if (chargedAttackTimer > chargeMax)
                 {
                     slash.GetComponent<SpriteRenderer>().color = new Color(1,0,0,1);
-                    slash.GetComponent<SlashAttack>().Setup(dmg * 2);
+                    slash.GetComponent<SlashAttack>().Setup(dmg * 2, slashAttackPoint);
                 }
                 else
                 {
-                    slash.GetComponent<SlashAttack>().Setup(dmg);
+                    slash.GetComponent<SlashAttack>().Setup(dmg, slashAttackPoint);
                 }
                 
             }
@@ -135,6 +152,12 @@ public class PlayerCombat : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         canAttackY = true;
+    }
+
+    IEnumerator BCooldownTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        canAttackB = true;
     }
 
     public void TakeDamage(int damage)
