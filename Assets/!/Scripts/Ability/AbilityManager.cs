@@ -10,13 +10,21 @@ public class AbilityManager : MonoBehaviour
         cooldown
     }
 
+    public enum ControllerButtons
+    {
+        A,
+        B,
+        X,
+        Y
+    }
+
     #region Ability 1
     [Header("Ability 1")]
     public Ability ability1;
     private float ability1CooldownTime;
     private float ability1ActiveTime;
     AbilityState ability1State = AbilityState.ready;
-    public KeyCode ability1Key;
+    public ControllerButtons ability1Key;
     #endregion
 
     #region Ability 2
@@ -25,7 +33,7 @@ public class AbilityManager : MonoBehaviour
     private float ability2CooldownTime;
     private float ability2ActiveTime;
     AbilityState ability2State = AbilityState.ready;
-    public KeyCode ability2Key;
+    public ControllerButtons ability2Key;
     #endregion
 
     #region Ability 3
@@ -34,16 +42,16 @@ public class AbilityManager : MonoBehaviour
     private float ability3CooldownTime;
     private float ability3ActiveTime;
     AbilityState ability3State = AbilityState.ready;
-    public KeyCode ability3Key;
+    public ControllerButtons ability3Key;
     #endregion
 
-    #region Ability 2
-    [Header("Ability 2")]
+    #region Ability 4
+    [Header("Ability 4")]
     public Ability ability4;
     private float ability4CooldownTime;
     private float ability4ActiveTime;
     AbilityState ability4State = AbilityState.ready;
-    public KeyCode ability4Key;
+    public ControllerButtons ability4Key;
     #endregion
 
     
@@ -60,7 +68,7 @@ public class AbilityManager : MonoBehaviour
         switch (ability1State)
         {
             case AbilityState.ready:
-                if(Input.GetKeyDown(ability1Key))
+                if(Input.GetKeyDown(GetKeyCodeFromButton(ability1Key)))
                 {
                     ability1.Activate(gameObject);
                     ability1State = AbilityState.active;
@@ -96,7 +104,7 @@ public class AbilityManager : MonoBehaviour
         switch (ability2State)
         {
             case AbilityState.ready:
-                if(Input.GetKeyDown(ability2Key))
+                if(Input.GetKeyDown(GetKeyCodeFromButton(ability2Key)))
                 {
                     ability2.Activate(gameObject);
                     ability2State = AbilityState.active;
@@ -132,7 +140,7 @@ public class AbilityManager : MonoBehaviour
         switch (ability3State)
         {
             case AbilityState.ready:
-                if(Input.GetKeyDown(ability3Key))
+                if(Input.GetKeyDown(GetKeyCodeFromButton(ability3Key)))
                 {
                     ability3.Activate(gameObject);
                     ability3State = AbilityState.active;
@@ -168,7 +176,7 @@ public class AbilityManager : MonoBehaviour
         switch (ability4State)
         {
             case AbilityState.ready:
-                if(Input.GetKeyDown(ability4Key))
+                if(Input.GetKeyDown(GetKeyCodeFromButton(ability4Key)))
                 {
                     ability4.Activate(gameObject);
                     ability4State = AbilityState.active;
@@ -196,6 +204,18 @@ public class AbilityManager : MonoBehaviour
                     ability4State = AbilityState.ready;
                 }
                 break;
+        }
+    }
+
+    public KeyCode GetKeyCodeFromButton(ControllerButtons button)
+    {
+        switch (button)
+        {
+            case ControllerButtons.A: return KeyCode.JoystickButton0;
+            case ControllerButtons.B: return KeyCode.JoystickButton1;
+            case ControllerButtons.X: return KeyCode.JoystickButton2;
+            case ControllerButtons.Y: return KeyCode.JoystickButton3;
+            default: return KeyCode.None;
         }
     }
 

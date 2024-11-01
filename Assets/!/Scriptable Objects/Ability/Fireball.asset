@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edbbfabd90cdcf141990d148727f9a88, type: 3}
-  m_Name: Dash
+  m_Script: {fileID: 11500000, guid: a118d358a83ad334fb667b9568949d9e, type: 3}
+  m_Name: Fireball
   m_EditorClassIdentifier: 
-  abilityName: Dash
-  cooldownTime: 2
-  activeTime: 0.5
-  damage: 0
-  dashVelocity: 10
+  abilityName: Fireball
+  cooldownTime: 5
+  activeTime: 3
+  damage: 10
+  prefab: {fileID: 3434378758493662953, guid: f00ca42f3cc88134b8946c5a1b50c85c, type: 3}

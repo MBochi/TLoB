@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName ="Ability/Dash", fileName = "DashAbility")]
 public class DashAbility : Ability
 {
     public float dashVelocity;
@@ -9,9 +9,8 @@ public class DashAbility : Ability
     {
         PlayerMovement movement = parent.GetComponent<PlayerMovement>();
         Rigidbody2D rigidbody = parent.GetComponent<Rigidbody2D>();
-
-        Debug.Log("Dash activated");
-
+        
+        //Does not work right now
         rigidbody.velocity = movement.GetMovementInput().normalized * dashVelocity;
     }
 }

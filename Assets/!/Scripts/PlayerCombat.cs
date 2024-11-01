@@ -46,9 +46,9 @@ public class PlayerCombat : MonoBehaviour
 
     private void Aim()
     {   
-        AttackX();
-        AttackY();
-        AttackB();
+        //AttackX();
+        //AttackY();
+        //AttackB();
         if(playerStats.GetCurrentHealth() == 0)
         {
             Die();

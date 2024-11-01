@@ -5533,7 +5533,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ability1: {fileID: 11400000, guid: a5185bf4de1b8ef4b92959d082025919, type: 2}
-  ability1_key: 330
+  ability1Key: 0
+  ability2: {fileID: 11400000, guid: 25eaab5ea537aba438272bb44e90ba71, type: 2}
+  ability2Key: 1
+  ability3: {fileID: 0}
+  ability3Key: 2
+  ability4: {fileID: 0}
+  ability4Key: 3
 --- !u!1 &1030973911
 GameObject:
   m_ObjectHideFlags: 0
@@ -6660,7 +6666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2122806730}
   m_Layer: 0
-  m_Name: ExplosionSpawnPoint
+  m_Name: FireballSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
