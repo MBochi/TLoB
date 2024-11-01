@@ -8,7 +8,7 @@ using UnityEngine.Animations;
 public class PlayerMovement : MonoBehaviour
 {
     private Stats playerStats;
-    private Vector2 movement;
+    private Vector2 movementInput;
     private bool facingRight = true;
     private Rigidbody2D rb;
     private Animator animator;
@@ -24,19 +24,19 @@ public class PlayerMovement : MonoBehaviour
     //Input
     void Update()
     {
-        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 
     //Actions
     private void FixedUpdate() 
     {
         Move();
-        TurnCheck(movement.x);
+        TurnCheck(movementInput.x);
     }
     public void Move()
     {
-        rb.MovePosition(rb.position + playerStats.GetMovementSpeed() * Time.fixedDeltaTime * movement);
-        animator.SetFloat("moveSpeed", movement.sqrMagnitude);
+        rb.MovePosition(rb.position + playerStats.GetMovementSpeed() * Time.fixedDeltaTime * movementInput);
+        animator.SetFloat("moveSpeed", movementInput.sqrMagnitude);
     }
 
     private void TurnCheck(float move)
@@ -54,5 +54,10 @@ public class PlayerMovement : MonoBehaviour
     {
         spriteRenderer.flipX = !spriteRenderer.flipX;
         facingRight = !facingRight;
+    }
+
+    public Vector2 GetMovementInput()
+    {
+        return this.movementInput;
     }
 }
